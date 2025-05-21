@@ -57,15 +57,20 @@ extension MainTableViewController { // tableView methods
     // 하는중..
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSection = headers[indexPath.section]
-        let selectedItem = rows[indexPath.section][indexPath.row]
+        let selectedRow = rows[indexPath.section][indexPath.row]
         
+        /*
         let nextVC = {
-            switch selectedItem {
-            case "프로필": return SubViewControllerProfile()
+            switch selectedRow {
+            case "프로필": return SubViewControllerProfile() as UIView
             default: return SubViewControllerProfile()
             }
         }
-        navigationController?.pushViewController(nextVC(), animated: true)
+         */
+        var nextVC = SubViewController()
+        nextVC.sectionLabelText = selectedRow
+        nextVC.rowLabelText = selectedRow
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
 }

@@ -8,7 +8,7 @@
 import Foundation
 import SnapKit
 
-class SubViewControllerProfile: UIViewController{
+class SubViewController: UIViewController{
     
     var sectionLabelText: String?
     var rowLabelText: String?
@@ -29,7 +29,7 @@ class SubViewControllerProfile: UIViewController{
         let label = UILabel()
         return label
     }()
-    
+    /*
     private func bindLabel(){
         guard let sectionLabelText else { return }
         sectionLabel.text = sectionLabelText
@@ -37,7 +37,7 @@ class SubViewControllerProfile: UIViewController{
         guard let rowLabelText else { return }
         rowLabel.text = rowLabelText
     }
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .navigation
