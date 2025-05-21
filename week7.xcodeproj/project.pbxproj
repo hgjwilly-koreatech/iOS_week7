@@ -6,8 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E4C943F6D14FA959099BDF2F /* Pods_week7.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1A9E037F8AB275D07DB745 /* Pods_week7.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B4DDD7B72DDDADE200D88C9F /* week7.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = week7.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDC4C5EEE7534B1FAC11B07B /* Pods-week7.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-week7.debug.xcconfig"; path = "Target Support Files/Pods-week7/Pods-week7.debug.xcconfig"; sourceTree = "<group>"; };
+		D14C3699A70202A736F89643 /* Pods-week7.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-week7.release.xcconfig"; path = "Target Support Files/Pods-week7/Pods-week7.release.xcconfig"; sourceTree = "<group>"; };
+		EF1A9E037F8AB275D07DB745 /* Pods_week7.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_week7.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C943F6D14FA959099BDF2F /* Pods_week7.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +55,8 @@
 			children = (
 				B4DDD7B92DDDADE200D88C9F /* week7 */,
 				B4DDD7B82DDDADE200D88C9F /* Products */,
+				FF798039A23DEC33D007B0DD /* Pods */,
+				C66247C6EC1F787769074759 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +68,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C66247C6EC1F787769074759 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF1A9E037F8AB275D07DB745 /* Pods_week7.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF798039A23DEC33D007B0DD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BDC4C5EEE7534B1FAC11B07B /* Pods-week7.debug.xcconfig */,
+				D14C3699A70202A736F89643 /* Pods-week7.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +92,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4DDD7CA2DDDADE300D88C9F /* Build configuration list for PBXNativeTarget "week7" */;
 			buildPhases = (
+				F2D87B554121383BF7A957BD /* [CP] Check Pods Manifest.lock */,
 				B4DDD7B32DDDADE200D88C9F /* Sources */,
 				B4DDD7B42DDDADE200D88C9F /* Frameworks */,
 				B4DDD7B52DDDADE200D88C9F /* Resources */,
+				DEE0DAD6041D325488D99AEE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -77,8 +106,6 @@
 				B4DDD7B92DDDADE200D88C9F /* week7 */,
 			);
 			name = week7;
-			packageProductDependencies = (
-			);
 			productName = week7;
 			productReference = B4DDD7B72DDDADE200D88C9F /* week7.app */;
 			productType = "com.apple.product-type.application";
@@ -127,6 +154,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		DEE0DAD6041D325488D99AEE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-week7/Pods-week7-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-week7/Pods-week7-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-week7/Pods-week7-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2D87B554121383BF7A957BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-week7-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B4DDD7B32DDDADE200D88C9F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,16 +209,17 @@
 /* Begin XCBuildConfiguration section */
 		B4DDD7CB2DDDADE300D88C9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDC4C5EEE7534B1FAC11B07B /* Pods-week7.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = week7/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -167,16 +237,17 @@
 		};
 		B4DDD7CC2DDDADE300D88C9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D14C3699A70202A736F89643 /* Pods-week7.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = week7/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
