@@ -15,7 +15,7 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
     lazy var rows = data.rows
     
     // component
-    let tableView = UITableView(frame: .zero, style: .plain)
+    let tableView = UITableView(frame: .zero, style: .grouped) // .plain) // .plain은 tableView(viewForHeaderInSection 무시된다
 
     // lifecycle
     override func viewDidLoad() {
@@ -27,76 +27,79 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
         register()
     }
 }
-extension MainTableViewController { // tableView methods
-    // section 개수
+extension MainTableViewController {
+    // ===== Header =====
+    // header 개수 (section)
     func numberOfSections(in tableView: UITableView) -> Int {
         return headers.count
     }
-    // 각 section의 row 개수
+    // custom header 반환
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UITableViewHeaderFooterView? {
+        // 1. header 생성/추출
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: MyTableViewHeader.identifier) as? MyTableViewHeader
+        else { print("header_else"); return UITableViewHeaderFooterView() }
+        // 2.
+        print("header_gaurd")
+        header.dataBind("header")//headers[section])
+        return header
+    }
+    // header height 설정하기
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 308
+    }
+    
+    // ===== Cell =====
+    // cell 개수 (rows)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rows[section].count
     }
-    
-    // row에 대입할 cell 반환 (custome cell, reuse)
+    // custome cell 반환
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // cell 생성/추출
+        // 1. cell 생성/추출
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTableViewCell.identifier, for: indexPath) as? MyTableViewCell
         else { return UITableViewCell() }
-        
-        // data bind
+        // 2. data bind
         cell.dataBind((rows[indexPath.section][indexPath.row]))
-        
-        // cell 반환
+        // 3. cell 반환
         return cell
     }
-    // header 반환
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
-        return headers[section]
-    }
-    
     // cell height 설정하기
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
-    // tap했을 때 action 설정하기
-    // 검색해보면서 했습니다..
-    // 하는중..
+    // cell action 설정하기 - 검색해보면서 했습니다.. 하는중..
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSection = headers[indexPath.section]
-        let selectedRow = rows[indexPath.section][indexPath.row]
+        let header = headers[indexPath.section]
+        let row = rows[indexPath.section][indexPath.row]
         
-        /*
-        let nextVC = {
-            switch selectedRow {
-            case "프로필": return SubViewControllerProfile() as UIView
-            default: return SubViewControllerProfile()
-            }
-        }
-         */
-        var nextVC = SubViewController()
-        nextVC.sectionLabelText = selectedRow
-        nextVC.rowLabelText = selectedRow
-        navigationController?.pushViewController(nextVC, animated: true)
+        let subVC = {
+            let subVC = SubViewController()
+            subVC.dataBind(header: header, row: row)
+            return subVC
+        }()
+        
+        navigationController?.pushViewController(subVC, animated: true)
+     
+        
+        // cell을 tap한 뒤, 회색으로 select된 것을 바로 deselect하기
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+
 }
     
 extension MainTableViewController {
     
     private func setTableView() {
-        
         view.addSubview(tableView)
         tableView.snp.makeConstraints{
-            //$0.leading.bottom.trailing.equalToSuperview()
-            //$0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
-            $0.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
-    
     private func register(){
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
+        tableView.register(MyTableViewHeader.self, forHeaderFooterViewReuseIdentifier: MyTableViewHeader.identifier
+        )
     }
 }

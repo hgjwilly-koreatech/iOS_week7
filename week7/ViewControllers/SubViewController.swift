@@ -10,52 +10,32 @@ import SnapKit
 
 class SubViewController: UIViewController{
     
-    var sectionLabelText: String?
+    // data
+    var headerLabelText: String?
     var rowLabelText: String?
-    
-    let backgroundSubview = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
-    
-    let sectionLabel = {
+
+    // component
+    let label = {
         let label = UILabel()
-        label.font = UIFont(name: "PretendardGOV-Bold", size: 30)
+        label.font = UIFont(name: "PretendardGOV-SemiBold", size: 24)
         label.textColor = .black
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
-    let rowLabel = {
-        let label = UILabel()
-        return label
-    }()
-    /*
-    private func bindLabel(){
-        guard let sectionLabelText else { return }
-        sectionLabel.text = sectionLabelText
-        
-        guard let rowLabelText else { return }
-        rowLabel.text = rowLabelText
-    }
-    */
+    
+    // lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .navigation
+        view.backgroundColor = .white
         
-        view.addSubview(backgroundSubview)
-        backgroundSubview.addSubview(sectionLabel)
-        backgroundSubview.addSubview(rowLabel)
-        
-        backgroundSubview.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
-            $0.bottom.equalToSuperview()
-        }
-        sectionLabel.snp.makeConstraints{
-            $0.center.equalTo(view.center)
-        }
-        rowLabel.snp.makeConstraints{
-            $0.center.equalTo(view.center)
+        view.addSubview(label)
+        label.snp.makeConstraints{
+            $0.center.equalToSuperview()
         }
     }
     
+    func dataBind(header: String, row: String){
+        label.text = "Header: \(header)\nCell: \(row)"
+    }
 }
