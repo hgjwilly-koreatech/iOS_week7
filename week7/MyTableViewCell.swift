@@ -33,8 +33,8 @@ class MyTableViewCell: UITableViewCell {
     private func setLayout(){
         contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(16)
-            $0.leading.equalToSuperview().offset(24)
+            $0.top.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(24)
             $0.trailing.equalToSuperview()
         }
     }

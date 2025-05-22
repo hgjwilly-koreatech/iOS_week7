@@ -11,15 +11,17 @@ import SnapKit
 class MainTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // data
     let data = TableViewModel.dummy()
-    lazy var headers = data.sections
+    lazy var headers = data.headers
     lazy var rows = data.rows
     
-    // tableView
+    // component
     let tableView = UITableView(frame: .zero, style: .plain)
 
+    // lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .navigation
+        //view.backgroundColor = .navigation
+        // self.navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = .navigation
         
         setTableView()
         register()
@@ -28,19 +30,23 @@ class MainTableViewController: UIViewController, UITableViewDelegate, UITableVie
 extension MainTableViewController { // tableView methods
     // section 개수
     func numberOfSections(in tableView: UITableView) -> Int {
-        return data.sections.count
+        return headers.count
     }
-    // row 개수
+    // 각 section의 row 개수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.rows[section].count
+        return rows[section].count
     }
     
-    // cell 반환
+    // row에 대입할 cell 반환 (custome cell, reuse)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // cell 생성/추출
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MyTableViewCell.identifier, for: indexPath) as? MyTableViewCell
         else { return UITableViewCell() }
         
-        cell.dataBind("test") //(rows[indexPath.section][indexPath.row])
+        // data bind
+        cell.dataBind((rows[indexPath.section][indexPath.row]))
+        
+        // cell 반환
         return cell
     }
     // header 반환
@@ -48,7 +54,7 @@ extension MainTableViewController { // tableView methods
         return headers[section]
     }
     
-    // height 설정하기
+    // cell height 설정하기
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 58
     }
