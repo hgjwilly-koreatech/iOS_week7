@@ -4,9 +4,8 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>PretendardGOV-Bold.ttf</string>
-		<string>PretendardGOV-ExtraBold.ttf</string>
-		<string>PretendardGOV-SemiBold.ttf</string>
+		<string>PretendardGOV-Medium.otf</string>
+		<string>PretendardGOV-Regular.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

@@ -9,9 +9,10 @@ import Foundation
 
 struct TableViewModel {
     
-    let headers = ["일반", "서비스"]
+    let headers: [String?] = ["일반", "서비스", nil]
     let rows = [["프로필", "비밀번호 변경", "알림"],
-                ["개인정보 처리방침", "코인 이용약관", "마케팅 수신 동의 약관", "오픈소스 라이선스"]]
+                ["개인정보 처리방침", "코인 이용약관", "마케팅 수신 동의 약관", "오픈소스 라이선스"],
+                ["앱 버전"]]
     
     static func dummy() -> TableViewModel {
         return TableViewModel()
